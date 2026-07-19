@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elina Tyskling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant+SC:wght@300;400;600&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #F8F1E7;
+      --cream-dark: #F0E6D6;
+      --blush:      #F5DCd8;
+      --bg:         #FAF6F0;
+      --orange:     #D4500A;
+      --orange-hot: #E8380A;
+      --red:        #B02318;
+      --smoke:      rgba(200, 60, 10, 0.07);
+      --text:       #1C1008;
+      --mid:        #6B4E3D;
+      --muted:      #A8927E;
+      --border:     rgba(180, 100, 50, 0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2.8rem;
+      background: rgba(250, 246, 240, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+
+    /* ── GLOBAL SMOKE LAYER ── */
+    .smoke-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .smoke-layer .s {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+    }
+
+    /* Explosion 1 — top right, huge orange burst */
+    .smoke-layer .s1 {
+      width: 85vw; height: 75vh;
+      top: -20%; right: -25%;
+      background: radial-gradient(ellipse at 40% 40%,
+        rgba(230, 70, 0, 0.55) 0%,
+        rgba(200, 30, 10, 0.35) 30%,
+        rgba(240, 120, 20, 0.15) 60%,
+        transparent 80%);
+      animation: drift1 12s ease-in-out infinite alternate;
+    }
+
+    /* Explosion 2 — bottom left, deep red */
+    .smoke-layer .s2 {
+      width: 70vw; height: 80vh;
+      bottom: -30%; left: -20%;
+      background: radial-gradient(ellipse at 60% 50%,
+        rgba(180, 20, 5, 0.50) 0%,
+        rgba(220, 50, 10, 0.30) 35%,
+        rgba(255, 100, 30, 0.12) 65%,
+        transparent 85%);
+      animation: drift2 15s ease-in-out infinite alternate;
+    }
+
+    /* Explosion 3 — center, orange-red core */
+    .smoke-layer .s3 {
+      width: 60vw; height: 60vh;
+      top: 25%; left: 20%;
+      background: radial-gradient(ellipse at 50% 50%,
+        rgba(255, 80, 10, 0.28) 0%,
+        rgba(200, 40, 0, 0.18) 40%,
+        transparent 75%);
+      animation: drift3 18s ease-in-out infinite alternate;
+    }
+
+    /* Explosion 4 — top left corner, dark red edge */
+    .smoke-layer .s4 {
+      width: 55vw; height: 55vh;
+      top: -15%; left: -15%;
+      background: radial-gradient(ellipse at 60% 60%,
+        rgba(160, 15, 5, 0.40) 0%,
+        rgba(210, 45, 10, 0.20) 45%,
+        transparent 75%);
+      animation: drift4 20s ease-in-out infinite alternate;
+    }
+
+    /* Explosion 5 — right side mid, hot orange */
+    .smoke-layer .s5 {
+      width: 50vw; height: 65vh;
+      top: 30%; right: -15%;
+      background: radial-gradient(ellipse at 40% 50%,
+        rgba(255, 100, 0, 0.35) 0%,
+        rgba(220, 60, 5, 0.18) 45%,
+        transparent 75%);
+      animation: drift5 14s ease-in-out infinite alternate;
+    }
+
+    /* Explosion 6 — bottom right, ember glow */
+    .smoke-layer .s6 {
+      width: 45vw; height: 50vh;
+      bottom: -10%; right: -5%;
+      background: radial-gradient(ellipse at 50% 40%,
+        rgba(200, 35, 5, 0.32) 0%,
+        rgba(255, 90, 20, 0.15) 50%,
+        transparent 80%);
+      animation: drift6 17s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift1 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-4%, 3%) scale(1.08); }
+    }
+    @keyframes drift2 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(5%, -4%) scale(1.06); }
+    }
+    @keyframes drift3 {
+      from { transform: translate(0, 0) scale(1) rotate(0deg); }
+      to   { transform: translate(3%, 5%) scale(1.12) rotate(3deg); }
+    }
+    @keyframes drift4 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(6%, 4%) scale(1.1); }
+    }
+    @keyframes drift5 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-5%, 3%) scale(1.07); }
+    }
+    @keyframes drift6 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-3%, -5%) scale(1.09); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 2.8rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    h1 {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(5rem, 13vw, 11rem);
+      line-height: 0.88;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    h1 em {
+      display: block;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--orange);
+    }
+
+    .hero-sub {
+      position: relative;
+      margin-top: 2rem;
+      font-family: 'Bodoni Moda', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    .hero-tag,
+    h1,
+    .hero-sub {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-rule {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg,
+        var(--orange-hot) 0%,
+        var(--red) 30%,
+        rgba(245, 200, 180, 0.4) 70%,
+        transparent 100%);
+    }
+
+    /* ── MUSIC SECTION ── */
+    .section-music {
+      padding: 6rem 2.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .tracks {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* ── TRACK CARD ── */
+    .track {
+      background: rgba(250, 246, 240, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 2rem 2rem 1.6rem;
+      transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .track::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at top right,
+        rgba(212, 80, 10, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .track:hover {
+      border-color: rgba(180, 100, 50, 0.35);
+      background: rgba(248, 241, 231, 0.9);
+      box-shadow: 0 2px 20px rgba(212, 80, 10, 0.07);
+    }
+
+    .track:hover::before { opacity: 1; }
+
+    .track-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .track-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.1em;
+    }
+
+    .track-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .track-meta {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 0.35rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* Play button */
+    .play-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid var(--orange);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
+    }
+
+    .play-btn:hover {
+      background: rgba(212, 80, 10, 0.08);
+      box-shadow: 0 0 18px rgba(212, 80, 10, 0.2);
+      transform: scale(1.05);
+    }
+
+    .play-btn.playing {
+      background: var(--orange);
+      box-shadow: 0 0 24px rgba(212, 80, 10, 0.35);
+    }
+
+    .play-btn svg {
+      width: 16px; height: 16px;
+      fill: var(--orange);
+      transition: fill 0.2s;
+      margin-left: 2px;
+    }
+
+    .play-btn.playing svg { fill: #FAF6F0; margin-left: 0; }
+
+    /* Progress */
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      min-width: 36px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--orange-hot), var(--red));
+      position: relative;
+      transition: width 0.1s linear;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: -3px; top: 50%;
+      transform: translateY(-50%);
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .progress-track:hover .progress-fill::after { opacity: 1; }
+
+    /* Volume */
+    .volume-area {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .vol-icon {
+      color: var(--muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+
+    input[type="range"].volume-slider {
+      -webkit-appearance: none;
+      width: 64px; height: 1px;
+      background: var(--border);
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"].volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 8px; height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 2.8rem;
+      width: calc(100% - 5.6rem);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 2.8rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-contact a {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--orange);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .footer-contact a:hover { color: var(--red); }
+
+    /* Playing pulse */
+    @keyframes pulse-soft {
+      0%   { box-shadow: 0 0 0 0 rgba(212, 80, 10, 0.3); }
+      70%  { box-shadow: 0 0 0 10px rgba(212, 80, 10, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(212, 80, 10, 0); }
+    }
+
+    .play-btn.playing {
+      animation: pulse-soft 2s ease-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SMOKE -->
+  <div class="smoke-layer">
+    <div class="s s1"></div>
+    <div class="s s2"></div>
+    <div class="s s3"></div>
+    <div class="s s4"></div>
+    <div class="s s5"></div>
+    <div class="s s6"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Elina Tyskling</a>
+    <ul class="nav-links">
+      <li><a href="#music">Music</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-tag">Songwriter &mdash; Stockholm</p>
+    <h1>
+      Elina<br />
+      <em>Tyskling</em>
+    </h1>
+    <p class="hero-sub">Professional songwriter with a lifelong dedication to the written word. Writing across rap, soul &amp; pop.</p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <!-- MUSIC -->
+  <section class="section-music" id="music">
+    <p class="section-label">Music</p>
+
+    <div class="tracks">
+
+      <!-- TRACK 1 -->
+      <div class="track">
+        <div class="track-header">
+          <div class="track-info">
+            <div class="track-number">i</div>
+            <div class="track-title">Apricots</div>
+            <div class="track-meta">Elina Tyskling &mdash; Final Mix</div>
+          </div>
+          <button class="play-btn" id="btn-1" onclick="togglePlay(1)" aria-label="Play Apricots">
+            <svg id="icon-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="player-controls">
+          <span class="time" id="cur-1">0:00</span>
+          <div class="progress-track" id="prog-track-1" onclick="seek(event, 1)">
+            <div class="progress-fill" id="prog-1"></div>
+          </div>
+          <span class="time" id="dur-1">--:--</span>
+          <div class="volume-area">
+            <span class="vol-icon" onclick="toggleMute(1)">&#9834;</span>
+            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 1)" />
+          </div>
+        </div>
+        <audio id="audio-1" src="songs/apricots.mp3" preload="metadata"></audio>
+      </div>
+
+      <!-- TRACK 2 -->
+      <div class="track">
+        <div class="track-header">
+          <div class="track-info">
+            <div class="track-number">ii</div>
+            <div class="track-title">Hercules</div>
+            <div class="track-meta">Elina Tyskling &mdash; Final Mix</div>
+          </div>
+          <button class="play-btn" id="btn-2" onclick="togglePlay(2)" aria-label="Play Hercules">
+            <svg id="icon-2" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="player-controls">
+          <span class="time" id="cur-2">0:00</span>
+          <div class="progress-track" id="prog-track-2" onclick="seek(event, 2)">
+            <div class="progress-fill" id="prog-2"></div>
+          </div>
+          <span class="time" id="dur-2">--:--</span>
+          <div class="volume-area">
+            <span class="vol-icon" onclick="toggleMute(2)">&#9834;</span>
+            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 2)" />
+          </div>
+        </div>
+        <audio id="audio-2" src="songs/hercules.flac" preload="metadata"></audio>
+      </div>
+
+      <!-- TRACK 3 -->
+      <div class="track">
+        <div class="track-header">
+          <div class="track-info">
+            <div class="track-number">iii</div>
+            <div class="track-title">Where the Hell Did He Go</div>
+            <div class="track-meta">Elina Tyskling &mdash; v2</div>
+          </div>
+          <button class="play-btn" id="btn-3" onclick="togglePlay(3)" aria-label="Play Where the Hell Did He Go">
+            <svg id="icon-3" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="player-controls">
+          <span class="time" id="cur-3">0:00</span>
+          <div class="progress-track" id="prog-track-3" onclick="seek(event, 3)">
+            <div class="progress-fill" id="prog-3"></div>
+          </div>
+          <span class="time" id="dur-3">--:--</span>
+          <div class="volume-area">
+            <span class="vol-icon" onclick="toggleMute(3)">&#9834;</span>
+            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 3)" />
+          </div>
+        </div>
+        <audio id="audio-3" src="songs/where-the-hell.mp3" preload="metadata"></audio>
+      </div>
+
+      <!-- TRACK 4 -->
+      <div class="track">
+        <div class="track-header">
+          <div class="track-info">
+            <div class="track-number">iv</div>
+            <div class="track-title">Creature of Rhythm</div>
+            <div class="track-meta">Elina Tyskling &mdash; Final</div>
+          </div>
+          <button class="play-btn" id="btn-4" onclick="togglePlay(4)" aria-label="Play Creature of Rhythm">
+            <svg id="icon-4" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="player-controls">
+          <span class="time" id="cur-4">0:00</span>
+          <div class="progress-track" id="prog-track-4" onclick="seek(event, 4)">
+            <div class="progress-fill" id="prog-4"></div>
+          </div>
+          <span class="time" id="dur-4">--:--</span>
+          <div class="volume-area">
+            <span class="vol-icon" onclick="toggleMute(4)">&#9834;</span>
+            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 4)" />
+          </div>
+        </div>
+        <audio id="audio-4" src="songs/creature-of-rhythm.wav" preload="metadata"></audio>
+      </div>
+
+      <!-- TRACK 5 -->
+      <div class="track">
+        <div class="track-header">
+          <div class="track-info">
+            <div class="track-number">v</div>
+            <div class="track-title">Read My Mind</div>
+            <div class="track-meta">Elina Tyskling &mdash; v13</div>
+          </div>
+          <button class="play-btn" id="btn-5" onclick="togglePlay(5)" aria-label="Play Read My Mind">
+            <svg id="icon-5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="player-controls">
+          <span class="time" id="cur-5">0:00</span>
+          <div class="progress-track" id="prog-track-5" onclick="seek(event, 5)">
+            <div class="progress-fill" id="prog-5"></div>
+          </div>
+          <span class="time" id="dur-5">--:--</span>
+          <div class="volume-area">
+            <span class="vol-icon" onclick="toggleMute(5)">&#9834;</span>
+            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 5)" />
+          </div>
+        </div>
+        <audio id="audio-5" src="songs/read-my-mind.mp3" preload="metadata"></audio>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <span class="footer-name">Elina Tyskling</span>
+    <div class="footer-contact">
+      <a href="mailto:elinamariatyskling@gmail.com">elinamariatyskling@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    const pauseIcon = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
+    const playIcon  = `<path d="M8 5v14l11-7z"/>`;
+
+    let currentTrack = null;
+
+    function togglePlay(id) {
+      const audio = document.getElementById(`audio-${id}`);
+      const btn   = document.getElementById(`btn-${id}`);
+      const icon  = document.getElementById(`icon-${id}`);
+
+      if (currentTrack && currentTrack !== id) {
+        const prev     = document.getElementById(`audio-${currentTrack}`);
+        const prevBtn  = document.getElementById(`btn-${currentTrack}`);
+        const prevIcon = document.getElementById(`icon-${currentTrack}`);
+        prev.pause();
+        prevBtn.classList.remove('playing');
+        prevIcon.innerHTML = playIcon;
+      }
+
+      if (audio.paused) {
+        audio.play();
+        btn.classList.add('playing');
+        icon.innerHTML = pauseIcon;
+        currentTrack = id;
+      } else {
+        audio.pause();
+        btn.classList.remove('playing');
+        icon.innerHTML = playIcon;
+        currentTrack = null;
+      }
+    }
+
+    function formatTime(s) {
+      if (isNaN(s)) return '--:--';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${m}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    function initTrack(id) {
+      const audio = document.getElementById(`audio-${id}`);
+
+      audio.addEventListener('loadedmetadata', () => {
+        document.getElementById(`dur-${id}`).textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (!audio.duration) return;
+        const pct = (audio.currentTime / audio.duration) * 100;
+        document.getElementById(`prog-${id}`).style.width = pct + '%';
+        document.getElementById(`cur-${id}`).textContent = formatTime(audio.currentTime);
+      });
+
+      audio.addEventListener('ended', () => {
+        document.getElementById(`btn-${id}`).classList.remove('playing');
+        document.getElementById(`icon-${id}`).innerHTML = playIcon;
+        document.getElementById(`prog-${id}`).style.width = '0%';
+        document.getElementById(`cur-${id}`).textContent = '0:00';
+        currentTrack = null;
+      });
+
+      audio.volume = 0.85;
+    }
+
+    function seek(e, id) {
+      const audio = document.getElementById(`audio-${id}`);
+      const track = document.getElementById(`prog-track-${id}`);
+      const rect  = track.getBoundingClientRect();
+      const pct   = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      audio.currentTime = pct * audio.duration;
+    }
+
+    function setVolume(e, id) {
+      document.getElementById(`audio-${id}`).volume = parseFloat(e.target.value);
+    }
+
+    function toggleMute(id) {
+      const audio = document.getElementById(`audio-${id}`);
+      audio.muted = !audio.muted;
+    }
+
+    [1, 2, 3, 4, 5].forEach(initTrack);
+  </script>
+
+</body>
+</html>

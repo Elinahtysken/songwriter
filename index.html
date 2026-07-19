@@ -187,12 +187,43 @@
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 42%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-text {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 0 2.8rem 5rem;
       position: relative;
+      z-index: 1;
+    }
+
+    .hero-image-col {
+      position: relative;
       overflow: hidden;
+    }
+
+    .hero-image-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(0.85) contrast(1.05);
+    }
+
+    .hero-image-col::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, var(--bg) 0%, transparent 18%),
+        linear-gradient(to top, var(--bg) 0%, transparent 12%),
+        linear-gradient(160deg, rgba(212, 80, 10, 0.18) 0%, rgba(176, 35, 24, 0.12) 40%, transparent 70%);
     }
 
     .hero-tag {
@@ -236,13 +267,6 @@
       line-height: 1.6;
     }
 
-    .hero-tag,
-    h1,
-    .hero-sub {
-      position: relative;
-      z-index: 1;
-    }
-
     .hero-rule {
       position: absolute;
       bottom: 0; left: 0;
@@ -268,7 +292,34 @@
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .music-note {
+      font-size: 0.55em;
+      color: var(--orange);
+      vertical-align: super;
+    }
+
+    .music-byline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text);
       margin-bottom: 3rem;
+      max-width: 600px;
+      line-height: 1.5;
     }
 
     .tracks {
@@ -459,6 +510,174 @@
       width: calc(100% - 5.6rem);
     }
 
+    /* ── ORDER FORM ── */
+    .section-order {
+      padding: 6rem 2.8rem;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      background: #FFFFFF;
+    }
+
+    .order-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .order-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2.6rem;
+      font-weight: 300;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .order-intro span { color: var(--orange); }
+
+    .order-note {
+      margin-top: 1.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+
+    /* ── WORK WITH ME ── */
+    .section-work {
+      padding: 6rem 2.8rem;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-work .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--text);
+    }
+
+    .work-text {
+      margin-top: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.8;
+      max-width: 780px;
+    }
+
+    .work-text strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-field label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--orange);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1.5px solid #C0A888;
+      padding: 0.7rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-field select {
+      -webkit-appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A8927E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.2rem center;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-bottom-color: var(--orange);
+    }
+
+    .form-field textarea {
+      resize: none;
+      min-height: 120px;
+      line-height: 1.7;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .submit-btn {
+      margin-top: 0.4rem;
+      align-self: flex-start;
+      background: transparent;
+      border: 1.5px solid var(--orange);
+      color: var(--orange);
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.6rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: var(--orange);
+      color: var(--bg);
+    }
+
+    .form-success {
+      display: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--orange);
+      margin-top: 0.8rem;
+    }
+
     /* ── FOOTER ── */
     footer {
       padding: 3rem 2.8rem;
@@ -519,24 +738,31 @@
     <a class="nav-logo" href="#">Elina Tyskling</a>
     <ul class="nav-links">
       <li><a href="#music">Music</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#work">Work with me</a></li>
+      <li><a href="#contact">Commission</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-tag">Songwriter &mdash; Stockholm</p>
-    <h1>
-      Elina<br />
-      <em>Tyskling</em>
-    </h1>
-    <p class="hero-sub">Professional songwriter with a lifelong dedication to the written word. Writing across rap, soul &amp; pop.</p>
-    <div class="hero-rule"></div>
+    <div class="hero-text">
+      <p class="hero-tag">Songwriter &mdash; Stockholm</p>
+      <h1>
+        Elina<br />
+        <em>Tyskling</em>
+      </h1>
+      <p class="hero-sub">Professional songwriter with a lifelong dedication to the written word. Writing across rap, soul &amp; pop.</p>
+      <div class="hero-rule"></div>
+    </div>
+    <div class="hero-image-col">
+      <img src="elinatyskling.png" alt="Elina Tyskling" />
+    </div>
   </section>
 
   <!-- MUSIC -->
   <section class="section-music" id="music">
-    <p class="section-label">Music</p>
+    <h2 class="section-heading">Music <span class="music-note">♪</span></h2>
+    <p class="music-byline">All songs written and composed entirely by Elina Tyskling — lyrics and melody, start to finish.</p>
 
     <div class="tracks">
 
@@ -546,7 +772,7 @@
           <div class="track-info">
             <div class="track-number">i</div>
             <div class="track-title">Apricots</div>
-            <div class="track-meta">Elina Tyskling &mdash; Final Mix</div>
+            <div class="track-meta">Country / Bluegrass</div>
           </div>
           <button class="play-btn" id="btn-1" onclick="togglePlay(1)" aria-label="Play Apricots">
             <svg id="icon-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -572,7 +798,7 @@
           <div class="track-info">
             <div class="track-number">ii</div>
             <div class="track-title">Hercules</div>
-            <div class="track-meta">Elina Tyskling &mdash; Final Mix</div>
+            <div class="track-meta">Pop</div>
           </div>
           <button class="play-btn" id="btn-2" onclick="togglePlay(2)" aria-label="Play Hercules">
             <svg id="icon-2" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -598,7 +824,7 @@
           <div class="track-info">
             <div class="track-number">iii</div>
             <div class="track-title">Where the Hell Did He Go</div>
-            <div class="track-meta">Elina Tyskling &mdash; v2</div>
+            <div class="track-meta">Soul</div>
           </div>
           <button class="play-btn" id="btn-3" onclick="togglePlay(3)" aria-label="Play Where the Hell Did He Go">
             <svg id="icon-3" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -624,7 +850,7 @@
           <div class="track-info">
             <div class="track-number">iv</div>
             <div class="track-title">Creature of Rhythm</div>
-            <div class="track-meta">Elina Tyskling &mdash; Final</div>
+            <div class="track-meta">Soul</div>
           </div>
           <button class="play-btn" id="btn-4" onclick="togglePlay(4)" aria-label="Play Creature of Rhythm">
             <svg id="icon-4" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -650,7 +876,7 @@
           <div class="track-info">
             <div class="track-number">v</div>
             <div class="track-title">Read My Mind</div>
-            <div class="track-meta">Elina Tyskling &mdash; v13</div>
+            <div class="track-meta">Pop</div>
           </div>
           <button class="play-btn" id="btn-5" onclick="togglePlay(5)" aria-label="Play Read My Mind">
             <svg id="icon-5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -670,6 +896,61 @@
         <audio id="audio-5" src="songs/read-my-mind.mp3" preload="metadata"></audio>
       </div>
 
+    </div>
+  </section>
+
+  <!-- WORK WITH ME -->
+  <section class="section-work" id="work">
+    <p class="section-label">Work with me</p>
+    <p class="work-text">
+      I bring a <strong>wide creative range</strong> — from rap to soul to pop and beyond. I don't just write lyrics; I <strong>create both words and melody</strong>, delivering a complete song, not just a text on a page. Every piece is <strong>truly unique</strong> — no average dump-pop, no filler. Expect unexpected metaphors, layered meaning and real substance that genuinely stands out. My <strong>high-quality English lyrics</strong> are precise and vivid, with language that cuts through and words that feel inevitable once you hear them. I work <strong>fast and dedicated</strong> — you can expect delivery <strong>within one week</strong>.
+    </p>
+  </section>
+
+  <!-- ORDER FORM -->
+  <section class="section-order" id="contact">
+    <p class="section-label">Commission a Song</p>
+    <div class="order-grid">
+      <div>
+        <p class="order-intro">Tell me what you<br /><span>need to say.</span></p>
+        <p class="order-note">Whether it's rap, soul or pop — send me a brief and I'll craft something that fits your vision. Every song is written from scratch, tailored to you.</p>
+
+      </div>
+      <form action="https://api.web3forms.com/submit" method="POST" id="order-form">
+        <input type="hidden" name="access_key" value="916e47f0-3ed8-4811-a2bd-a54ea85c1c4f" />
+        <input type="hidden" name="subject" value="New song commission — Elina Tyskling" />
+        <input type="hidden" name="redirect" value="false" />
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Genre</label>
+          <select name="genre" required>
+            <option value="" disabled selected>Select a genre</option>
+            <option>Rap</option>
+            <option>Soul</option>
+            <option>Pop</option>
+            <option>Other / Mix</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Tell me about your song</label>
+          <textarea name="message" placeholder="Mood, theme, story, artist, language — anything helps." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Request</button>
+        <p class="form-success" id="form-success">Thank you — I'll be in touch soon.</p>
+      </form>
     </div>
   </section>
 
@@ -764,6 +1045,24 @@
     }
 
     [1, 2, 3, 4, 5].forEach(initTrack);
+
+    // Order form — submit without page reload
+    document.getElementById('order-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.submit-btn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(this)
+      });
+      if (res.ok) {
+        document.getElementById('form-success').style.display = 'block';
+        this.reset();
+      }
+      btn.textContent = 'Send Request';
+      btn.disabled = false;
+    });
   </script>
 
 </body>

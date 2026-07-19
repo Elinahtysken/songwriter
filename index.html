@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elina Tyskling</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant+SC:wght@300;400;600&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant+SC:wght@300;400;600&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -239,18 +239,18 @@
 
     h1 {
       position: relative;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(5rem, 13vw, 11rem);
-      line-height: 0.88;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 1;
       color: var(--text);
       letter-spacing: -0.01em;
     }
 
     h1 em {
       display: block;
-      font-style: italic;
-      font-weight: 300;
+      font-style: normal;
+      font-weight: 800;
       color: var(--orange);
     }
 
@@ -669,6 +669,21 @@
       color: var(--bg);
     }
 
+    .pricing-note {
+      margin-top: 1.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    .pricing-note strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--text);
+    }
+
     .form-success {
       display: none;
       font-family: 'Cormorant Garamond', serif;
@@ -904,6 +919,8 @@
     <p class="section-label">Work with me</p>
     <p class="work-text">
       I bring a <strong>wide creative range</strong> — from rap to soul to pop and beyond. I don't just write lyrics; I <strong>create both words and melody</strong>, delivering a complete song, not just a text on a page. Every piece is <strong>truly unique</strong> — no average dump-pop, no filler. Expect unexpected metaphors, layered meaning and real substance that genuinely stands out. My <strong>high-quality English lyrics</strong> are precise and vivid, with language that cuts through and words that feel inevitable once you hear them. I work <strong>fast and dedicated</strong> — you can expect delivery <strong>within one week</strong>.
+      <br /><br />
+      I also offer <strong>ghostwriting</strong>. The song is yours — your name, your voice, your story. It never has to be known that I wrote it.
     </p>
   </section>
 
@@ -951,6 +968,7 @@
         <button type="submit" class="submit-btn">Send Request</button>
         <p class="form-success" id="form-success">Thank you — I'll be in touch soon.</p>
       </form>
+      <p class="pricing-note">I charge per song and offer <strong>very competitive rates</strong>. Get in touch and we'll find something that works for you.</p>
     </div>
   </section>
 

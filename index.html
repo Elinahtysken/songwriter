@@ -89,6 +89,31 @@
     .demo-link { margin-top: .75rem; }
     .copy p + p { margin-top: 1rem; }
 
+    .lyric-sheet {
+      background: var(--surface);
+      border-top: 3px solid #d9a5b2;
+      padding: clamp(1.25rem, 4vw, 3rem);
+    }
+    .lyric-sheet h3 {
+      margin: .3rem 0 0;
+      font: 400 clamp(2.75rem, 6vw, 4.5rem)/1 var(--serif);
+    }
+    .lyric-genre, .lyric-part h4 {
+      color: var(--muted);
+      font-size: .875rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .lyric-part {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+    }
+    .lyric-part h4 { margin: 0 0 .75rem; }
+    .lyric-part p + p, .lyric-outro { margin-top: .85rem; }
+    .lyric-outro { color: var(--muted); }
+
     .work-panel {
       margin-bottom: clamp(2rem, 5vw, 4rem);
       padding-inline: clamp(1.25rem, 5vw, 4rem);
@@ -188,7 +213,72 @@
 
     <section class="section" id="example-lyrics" aria-labelledby="lyrics-heading">
       <h2 id="lyrics-heading">Example Lyrics</h2>
-      <p>Lyric excerpts coming soon.</p>
+      <article class="lyric-sheet" aria-labelledby="lucky-girl">
+        <header>
+          <p class="lyric-genre">Country pop</p>
+          <h3 id="lucky-girl">Lucky Girl</h3>
+        </header>
+        <section class="lyric-part"><h4>Verse</h4>
+          <p>13 of October and a crystal sky<br>
+            A day of golden glow,<br>
+            I watched it pass by</p>
+          <p>My sense of self is not that strong<br>
+            I get in to trouble<br>
+            don't know what I do wrong</p>
+          <p>Do I sacrifice myself just for a good story<br>
+            I have plenty of those<br>
+            But  it gets quite boring<br>
+            mmmm</p>
+        </section>
+        <section class="lyric-part"><h4>Chorus</h4>
+          <p>Am I just what darkness seeks, the corner to where bad luck creeps</p>
+          <p>Can I have some luck or do I repeat, same old patterns that I try to beat</p>
+          <p>I wanna be the<br>
+            bug that flipped back to it's feet, climbing up a straw to never look beneath</p>
+          <p>Lucky girl<br>
+            Lucky girl</p>
+        </section>
+        <section class="lyric-part"><h4>Verse</h4>
+          <p>Sometimes I do things just for the shits<br>
+            It's quite fun<br>
+            But then it shreds me to bits</p>
+          <p>People get an abundance of grace<br>
+            I’m happy for them<br>
+            But then they shove it in my face</p>
+          <p>13 of October and the trees have coins<br>
+            Drizzling down on me<br>
+            Luck is turning i can feel it in my bones</p>
+          <p>Lucky girl</p>
+        </section>
+        <section class="lyric-part"><h4>Chorus</h4>
+          <p>Am I just what darkness seeks, the corner to where bad luck creeps</p>
+          <p>Can I have some luck or do I repeat, same old patterns that I try to beat</p>
+          <p>I wanna be the<br>
+            bug that flipped back to it's feet, climbing up a straw to never look beneath</p>
+          <p>Lucky girl<br>
+            Lucky girl</p>
+        </section>
+        <section class="lyric-part"><h4>Bridge</h4>
+          <p>Heavenly dust sprinkled down me<br>
+            Whatever path Il take will be the right one youll see</p>
+          <p>Every stone weighing on my back<br>
+            Will be lifted as im now on the right track</p>
+          <p>The rest of my time will be joyful days<br>
+            And trouble will be left in the memory lane</p>
+          <p>Lucky girl<br>
+            Lucky girl</p>
+        </section>
+        <section class="lyric-part"><h4>Chorus</h4>
+          <p>Here we go</p>
+          <p>Am I just what darkness seeks, the corner to where bad luck creeps</p>
+          <p>Can I have some luck or do I repeat, same old patterns that I try to beat</p>
+          <p>I wanna be the<br>
+            bug that flipped back to it's feet, climbing up a straw to never look beneath</p>
+          <p>Lucky girl<br>
+            Lucky girl</p>
+        </section>
+        <p class="lyric-outro"><em>[outro whistle sounds]</em></p>
+      </article>
     </section>
 
     <section class="section work-panel" id="work">

@@ -18,7 +18,6 @@
       <a href="#example-lyrics">Example Lyrics</a>
       <a href="how-do-you-write-a-song.html">How do you write a song?</a>
       <a href="#work">Work with me</a>
-      <a href="#contact">Commission a song</a>
     </nav>
   </header>
 
@@ -122,87 +121,14 @@
       <div class="copy">
         <p>I write English lyrics and original melodies shaped by your story and your voice.</p>
         <p>I also offer ghostwriting if you want to release the song under your own name. You can expect delivery within a week.</p>
-        <a href="#contact">Commission a song</a>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <h2>Commission a song</h2>
-      <div>
-        <p>Tell me what you have in mind. I write each song from scratch and charge per song. Get in touch and we can discuss a price for your project.</p>
-        <form action="https://api.web3forms.com/submit" method="post" id="order-form">
-          <input type="hidden" name="access_key" value="916e47f0-3ed8-4811-a2bd-a54ea85c1c4f" />
-          <input type="hidden" name="subject" value="New song commission for Elina Tyskling">
-          <input type="hidden" name="redirect" value="false">
-          <div class="form-row">
-            <div class="field">
-              <label for="name-field">Name</label>
-              <input id="name-field" name="name" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" required>
-            </div>
-          </div>
-          <div class="field">
-            <label for="genre">Genre</label>
-            <select id="genre" name="genre" required>
-              <option value="" disabled selected>Choose a genre</option>
-              <option>Country</option>
-              <option>Soul</option>
-              <option>Gospel</option>
-              <option>Pop</option>
-              <option>Other / mix</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="message">Tell me about the song</label>
-            <textarea id="message" name="message" placeholder="For example, the mood, theme or artist" required></textarea>
-          </div>
-          <button type="submit">Send request</button>
-          <p class="form-status" role="status"></p>
-        </form>
+        <p>If you’d like me to write a song for you, email me at <a href="mailto:elinamariatyskling@gmail.com">elinamariatyskling@gmail.com</a>.</p>
       </div>
     </section>
   </main>
 
-  <footer class="frame">
+  <footer class="frame" id="contact">
     <span class="wordmark">Elina Tyskling</span>
     <a href="mailto:elinamariatyskling@gmail.com">elinamariatyskling@gmail.com</a>
   </footer>
-
-  <script>
-    const form = document.querySelector('#order-form');
-    const submitButton = form.querySelector('button');
-    const statusMessage = form.querySelector('[role="status"]');
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      statusMessage.textContent = '';
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending…';
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          headers: { Accept: 'application/json' },
-          body: new FormData(form)
-        });
-        const result = await response.json();
-
-        if (!response.ok || !result.success) {
-          throw new Error('Web3Forms did not accept the request');
-        }
-
-        form.reset();
-        statusMessage.textContent = 'Thanks for your request. I’ll be in touch soon.';
-      } catch {
-        statusMessage.textContent = 'Your request could not be sent. Please try again or email me directly.';
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send request';
-      }
-    });
-  </script>
 </body>
 </html>

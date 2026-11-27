@@ -114,43 +114,9 @@ h2 { font-size: clamp(2.7rem, 6vw, 4.5rem); }
 .work-panel h2 em { color: #d9a5b2; font-weight: inherit; }
 .work-panel .copy p:first-child { font-size: clamp(1.15rem, 2vw, 1.4rem); }
 .work-panel .copy p + p { color: #e9dfe3; }
-.work-panel a {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: .55rem .9rem;
-  border: 1px solid currentColor;
-  color: #d9a5b2;
-  text-decoration: none;
-}
-.work-panel a:hover { background: #d9a5b2; color: #29272a; }
+.work-panel a { color: #d9a5b2; overflow-wrap: anywhere; }
+.work-panel a:hover { color: #faf6f7; }
 .work-panel a:focus-visible { outline-color: #d9a5b2; }
-form { display: grid; gap: 1rem; margin-top: 1.4rem; }
-.form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-.field { display: grid; gap: .3rem; }
-label { font-weight: 500; }
-input, select, textarea, button { font: inherit; }
-input, select, textarea {
-  width: 100%;
-  min-width: 0;
-  padding: .65rem .75rem;
-  border: 1px solid #8a8a8a;
-  border-radius: 0;
-  background: var(--surface);
-  color: var(--ink);
-}
-textarea { min-height: 8rem; resize: vertical; }
-button {
-  justify-self: start;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--surface);
-  padding: .65rem 1.1rem;
-  cursor: pointer;
-}
-button:hover { background: #373939; }
-button:disabled { opacity: .7; cursor: wait; }
-.form-status { color: var(--muted); }
-.form-status:empty { margin-top: -1rem; }
 footer { border-top: 1px solid var(--line); }
 footer a { overflow-wrap: anywhere; }
 
@@ -160,7 +126,6 @@ footer a { overflow-wrap: anywhere; }
 @media (max-width: 40rem) {
   .hero { grid-template-columns: 1fr; }
   .portrait { max-width: 28rem; }
-  .form-row { grid-template-columns: 1fr; }
 }
 
 .songwriting-page {

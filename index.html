@@ -1,1087 +1,300 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="sv">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elina Tyskling</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant+SC:wght@300;400;600&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Elina Tyskling, låtskrivare i Stockholm inom country, soul, gospel och pop.">
+  <title>Elina Tyskling | Låtskrivare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --cream:      #F8F1E7;
-      --cream-dark: #F0E6D6;
-      --blush:      #F5DCd8;
-      --bg:         #FAF6F0;
-      --orange:     #D4500A;
-      --orange-hot: #E8380A;
-      --red:        #B02318;
-      --smoke:      rgba(200, 60, 10, 0.07);
-      --text:       #1C1008;
-      --mid:        #6B4E3D;
-      --muted:      #A8927E;
-      --border:     rgba(180, 100, 50, 0.18);
+      color-scheme: light;
+      --ink: #151515;
+      --white: #fff;
+      --forest: #233d30;
+      --muted: #545454;
+      --line: #dededb;
+      --serif: "Instrument Serif", Georgia, serif;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--white);
     }
 
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; line-height: 1.6; }
+    h1, h2, h3, p, ul { margin: 0; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1; }
+    p { max-width: 58ch; }
+    a { color: var(--forest); text-underline-offset: .22em; }
+    :focus-visible { outline: 2px solid var(--forest); outline-offset: 4px; }
+    .frame { width: min(100% - 2.5rem, 72rem); margin-inline: auto; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
+    .site-header, footer {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 1.4rem 2.8rem;
-      background: rgba(250, 246, 240, 0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .65rem 2rem;
+      padding-block: 1.25rem;
     }
 
-    .nav-logo {
-      font-family: 'Cormorant SC', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-decoration: none;
-    }
+    .site-header { border-bottom: 1px solid var(--line); }
+    .wordmark { font: 1.65rem/1 var(--serif); color: var(--ink); text-decoration: none; }
+    nav { display: flex; flex-wrap: wrap; gap: .35rem clamp(1rem, 3vw, 2rem); }
+    nav a { color: var(--ink); font-size: .9375rem; text-decoration: none; }
+    nav a:hover, .wordmark:hover { text-decoration: underline; }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.75rem;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--orange); }
-
-    /* ── GLOBAL SMOKE LAYER ── */
-    .smoke-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .smoke-layer .s {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-    }
-
-    /* Explosion 1 — top right, huge orange burst */
-    .smoke-layer .s1 {
-      width: 85vw; height: 75vh;
-      top: -20%; right: -25%;
-      background: radial-gradient(ellipse at 40% 40%,
-        rgba(230, 70, 0, 0.55) 0%,
-        rgba(200, 30, 10, 0.35) 30%,
-        rgba(240, 120, 20, 0.15) 60%,
-        transparent 80%);
-      animation: drift1 12s ease-in-out infinite alternate;
-    }
-
-    /* Explosion 2 — bottom left, deep red */
-    .smoke-layer .s2 {
-      width: 70vw; height: 80vh;
-      bottom: -30%; left: -20%;
-      background: radial-gradient(ellipse at 60% 50%,
-        rgba(180, 20, 5, 0.50) 0%,
-        rgba(220, 50, 10, 0.30) 35%,
-        rgba(255, 100, 30, 0.12) 65%,
-        transparent 85%);
-      animation: drift2 15s ease-in-out infinite alternate;
-    }
-
-    /* Explosion 3 — center, orange-red core */
-    .smoke-layer .s3 {
-      width: 60vw; height: 60vh;
-      top: 25%; left: 20%;
-      background: radial-gradient(ellipse at 50% 50%,
-        rgba(255, 80, 10, 0.28) 0%,
-        rgba(200, 40, 0, 0.18) 40%,
-        transparent 75%);
-      animation: drift3 18s ease-in-out infinite alternate;
-    }
-
-    /* Explosion 4 — top left corner, dark red edge */
-    .smoke-layer .s4 {
-      width: 55vw; height: 55vh;
-      top: -15%; left: -15%;
-      background: radial-gradient(ellipse at 60% 60%,
-        rgba(160, 15, 5, 0.40) 0%,
-        rgba(210, 45, 10, 0.20) 45%,
-        transparent 75%);
-      animation: drift4 20s ease-in-out infinite alternate;
-    }
-
-    /* Explosion 5 — right side mid, hot orange */
-    .smoke-layer .s5 {
-      width: 50vw; height: 65vh;
-      top: 30%; right: -15%;
-      background: radial-gradient(ellipse at 40% 50%,
-        rgba(255, 100, 0, 0.35) 0%,
-        rgba(220, 60, 5, 0.18) 45%,
-        transparent 75%);
-      animation: drift5 14s ease-in-out infinite alternate;
-    }
-
-    /* Explosion 6 — bottom right, ember glow */
-    .smoke-layer .s6 {
-      width: 45vw; height: 50vh;
-      bottom: -10%; right: -5%;
-      background: radial-gradient(ellipse at 50% 40%,
-        rgba(200, 35, 5, 0.32) 0%,
-        rgba(255, 90, 20, 0.15) 50%,
-        transparent 80%);
-      animation: drift6 17s ease-in-out infinite alternate;
-    }
-
-    @keyframes drift1 {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(-4%, 3%) scale(1.08); }
-    }
-    @keyframes drift2 {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(5%, -4%) scale(1.06); }
-    }
-    @keyframes drift3 {
-      from { transform: translate(0, 0) scale(1) rotate(0deg); }
-      to   { transform: translate(3%, 5%) scale(1.12) rotate(3deg); }
-    }
-    @keyframes drift4 {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(6%, 4%) scale(1.1); }
-    }
-    @keyframes drift5 {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(-5%, 3%) scale(1.07); }
-    }
-    @keyframes drift6 {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(-3%, -5%) scale(1.09); }
-    }
-
-    /* ── HERO ── */
     .hero {
-      min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 42%;
-      position: relative;
-      overflow: hidden;
+      grid-template-columns: minmax(0, 1fr) minmax(0, .66fr);
+      align-items: center;
+      gap: clamp(2rem, 6vw, 6rem);
+      padding-block: clamp(3rem, 8vw, 7rem);
     }
 
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 2.8rem 5rem;
-      position: relative;
-      z-index: 1;
+    .eyebrow { font-size: .875rem; letter-spacing: .13em; text-transform: uppercase; color: var(--forest); }
+    h1 { font-size: clamp(4.25rem, 11vw, 9rem); line-height: .84; margin-block: 1.1rem 1.6rem; }
+    h1 em { font-weight: inherit; }
+    .hero-copy { font-size: clamp(1.05rem, 2vw, 1.25rem); max-width: 37ch; }
+    .hero-link { display: inline-block; margin-top: 1.4rem; font-weight: 600; }
+    .portrait { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 42%; filter: grayscale(1); }
+
+    .section {
+      display: grid;
+      grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+      gap: 1.5rem clamp(2rem, 7vw, 6rem);
+      border-top: 1px solid var(--line);
+      padding-block: clamp(2.5rem, 6vw, 5rem);
     }
 
-    .hero-image-col {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-image-col img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      filter: saturate(0.85) contrast(1.05);
-    }
-
-    .hero-image-col::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to right, var(--bg) 0%, transparent 18%),
-        linear-gradient(to top, var(--bg) 0%, transparent 12%),
-        linear-gradient(160deg, rgba(212, 80, 10, 0.18) 0%, rgba(176, 35, 24, 0.12) 40%, transparent 70%);
-    }
-
-    .hero-tag {
-      position: relative;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      color: var(--orange);
-      margin-bottom: 1rem;
-      font-weight: 300;
-    }
-
-    h1 {
-      position: relative;
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      line-height: 1;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    h1 em {
-      display: block;
-      font-style: normal;
-      font-weight: 800;
-      color: var(--orange);
-    }
-
-    .hero-sub {
-      position: relative;
-      margin-top: 2rem;
-      font-family: 'Bodoni Moda', serif;
-      font-style: italic;
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      max-width: 520px;
-      line-height: 1.6;
-    }
-
-    .hero-rule {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg,
-        var(--orange-hot) 0%,
-        var(--red) 30%,
-        rgba(245, 200, 180, 0.4) 70%,
-        transparent 100%);
-    }
-
-    /* ── MUSIC SECTION ── */
-    .section-music {
-      padding: 6rem 2.8rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-label {
-      font-family: 'Cormorant SC', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .section-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1;
-      margin-bottom: 1rem;
-      letter-spacing: -0.01em;
-    }
-
-    .music-note {
-      font-size: 0.55em;
-      color: var(--orange);
-      vertical-align: super;
-    }
-
-    .music-byline {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 3rem;
-      max-width: 600px;
-      line-height: 1.5;
-    }
-
-    .tracks {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    /* ── TRACK CARD ── */
+    h2 { font-size: clamp(2.7rem, 6vw, 4.5rem); }
+    h3 { font-size: 1.8rem; }
+    .copy p + p { margin-top: 1rem; }
+    .tracks { list-style: none; padding: 0; margin-top: 1.3rem; }
     .track {
-      background: rgba(250, 246, 240, 0.6);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 2rem 2rem 1.6rem;
-      transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .track::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(ellipse at top right,
-        rgba(212, 80, 10, 0.05) 0%, transparent 60%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    .track:hover {
-      border-color: rgba(180, 100, 50, 0.35);
-      background: rgba(248, 241, 231, 0.9);
-      box-shadow: 0 2px 20px rgba(212, 80, 10, 0.07);
-    }
-
-    .track:hover::before { opacity: 1; }
-
-    .track-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-    }
-
-    .track-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-      letter-spacing: 0.1em;
-    }
-
-    .track-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 300;
-      color: var(--text);
-      line-height: 1;
-      letter-spacing: 0.01em;
-    }
-
-    .track-meta {
-      font-size: 0.72rem;
-      font-weight: 300;
-      color: var(--muted);
-      margin-top: 0.35rem;
-      letter-spacing: 0.08em;
-    }
-
-    /* Play button */
-    .play-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 1px solid var(--orange);
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
-    }
-
-    .play-btn:hover {
-      background: rgba(212, 80, 10, 0.08);
-      box-shadow: 0 0 18px rgba(212, 80, 10, 0.2);
-      transform: scale(1.05);
-    }
-
-    .play-btn.playing {
-      background: var(--orange);
-      box-shadow: 0 0 24px rgba(212, 80, 10, 0.35);
-    }
-
-    .play-btn svg {
-      width: 16px; height: 16px;
-      fill: var(--orange);
-      transition: fill 0.2s;
-      margin-left: 2px;
-    }
-
-    .play-btn.playing svg { fill: #FAF6F0; margin-left: 0; }
-
-    /* Progress */
-    .player-controls {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.8rem;
-      color: var(--muted);
-      min-width: 36px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .progress-track {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      cursor: pointer;
-      position: relative;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--orange-hot), var(--red));
-      position: relative;
-      transition: width 0.1s linear;
-    }
-
-    .progress-fill::after {
-      content: '';
-      position: absolute;
-      right: -3px; top: 50%;
-      transform: translateY(-50%);
-      width: 6px; height: 6px;
-      background: var(--orange);
-      border-radius: 50%;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .progress-track:hover .progress-fill::after { opacity: 1; }
-
-    /* Volume */
-    .volume-area {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .vol-icon {
-      color: var(--muted);
-      font-size: 0.85rem;
-      cursor: pointer;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-    }
-
-    input[type="range"].volume-slider {
-      -webkit-appearance: none;
-      width: 64px; height: 1px;
-      background: var(--border);
-      outline: none;
-      cursor: pointer;
-    }
-
-    input[type="range"].volume-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 8px; height: 8px;
-      background: var(--orange);
-      border-radius: 50%;
-    }
-
-    /* ── DIVIDER ── */
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 0 2.8rem;
-      width: calc(100% - 5.6rem);
-    }
-
-    /* ── ORDER FORM ── */
-    .section-order {
-      padding: 6rem 2.8rem;
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      background: #FFFFFF;
-    }
-
-    .order-grid {
       display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 5rem;
-      margin-top: 3rem;
-      align-items: start;
-    }
-
-    .order-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 2.6rem;
-      font-weight: 300;
-      line-height: 1.3;
-      color: var(--text);
-    }
-
-    .order-intro span { color: var(--orange); }
-
-    .order-note {
-      margin-top: 1.4rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 300;
-      color: var(--mid);
-      line-height: 1.8;
-    }
-
-    /* ── WORK WITH ME ── */
-    .section-work {
-      padding: 6rem 2.8rem;
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-work .section-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 2.4rem;
-      font-weight: 600;
-      letter-spacing: 0;
-      text-transform: none;
-      color: var(--text);
-    }
-
-    .work-text {
-      margin-top: 2rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.4rem;
-      font-weight: 300;
-      color: var(--mid);
-      line-height: 1.8;
-      max-width: 780px;
-    }
-
-    .work-text strong {
-      font-style: normal;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .form-field label {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--orange);
-    }
-
-    .form-field input,
-    .form-field select,
-    .form-field textarea {
-      background: transparent;
-      border: none;
-      border-bottom: 1.5px solid #C0A888;
-      padding: 0.7rem 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-
-    .form-field select {
-      -webkit-appearance: none;
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A8927E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.2rem center;
-    }
-
-    .form-field input:focus,
-    .form-field select:focus,
-    .form-field textarea:focus {
-      border-bottom-color: var(--orange);
-    }
-
-    .form-field textarea {
-      resize: none;
-      min-height: 120px;
-      line-height: 1.7;
-    }
-
-    .form-field input::placeholder,
-    .form-field textarea::placeholder {
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .submit-btn {
-      margin-top: 0.4rem;
-      align-self: flex-start;
-      background: transparent;
-      border: 1.5px solid var(--orange);
-      color: var(--orange);
-      font-family: 'Cormorant SC', serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.6rem;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .submit-btn:hover {
-      background: var(--orange);
-      color: var(--bg);
-    }
-
-    .pricing-note {
-      margin-top: 1.8rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--mid);
-      line-height: 1.7;
-    }
-
-    .pricing-note strong {
-      font-style: normal;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .form-success {
-      display: none;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--orange);
-      margin-top: 0.8rem;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 3rem 2.8rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 16rem);
       align-items: center;
-      position: relative;
-      z-index: 1;
+      gap: .7rem 1rem;
+      border-top: 1px solid var(--line);
+      padding-block: .85rem;
     }
+    .track p { color: var(--muted); font-size: .875rem; margin-top: .25rem; }
+    audio { display: block; width: 100%; height: 2.75rem; }
 
-    .footer-name {
-      font-family: 'Cormorant SC', serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
+    form { display: grid; gap: 1rem; margin-top: 1.4rem; }
+    .form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .field { display: grid; gap: .3rem; }
+    label { font-weight: 500; }
+    input, select, textarea, button { font: inherit; }
+    input, select, textarea {
+      width: 100%;
+      min-width: 0;
+      padding: .65rem .75rem;
+      border: 1px solid #8a8a8a;
+      border-radius: 0;
+      background: var(--white);
+      color: var(--ink);
     }
-
-    .footer-contact a {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.88rem;
-      color: var(--orange);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
+    textarea { min-height: 8rem; resize: vertical; }
+    button {
+      justify-self: start;
+      border: 1px solid var(--forest);
+      background: var(--forest);
+      color: var(--white);
+      padding: .65rem 1.1rem;
+      cursor: pointer;
     }
+    button:hover { background: var(--ink); }
+    button:disabled { opacity: .7; cursor: wait; }
+    .form-status { color: var(--forest); }
+    .form-status:empty { margin-top: -1rem; }
+    footer { border-top: 1px solid var(--line); }
+    footer a { overflow-wrap: anywhere; }
 
-    .footer-contact a:hover { color: var(--red); }
-
-    /* Playing pulse */
-    @keyframes pulse-soft {
-      0%   { box-shadow: 0 0 0 0 rgba(212, 80, 10, 0.3); }
-      70%  { box-shadow: 0 0 0 10px rgba(212, 80, 10, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(212, 80, 10, 0); }
+    @media (max-width: 56rem) {
+      .section, .track { grid-template-columns: 1fr; }
+      audio { max-width: 22rem; }
     }
-
-    .play-btn.playing {
-      animation: pulse-soft 2s ease-out infinite;
+    @media (max-width: 40rem) {
+      .hero, .form-row { grid-template-columns: 1fr; }
+      .portrait { max-width: 26rem; }
     }
   </style>
 </head>
-<body>
+<body id="top">
+  <header class="site-header frame">
+    <a class="wordmark" href="#top">Elina Tyskling</a>
+    <nav aria-label="Huvudmeny">
+      <a href="#music">Musik</a>
+      <a href="#work">Samarbete</a>
+      <a href="#contact">Beställ en låt</a>
+    </nav>
+  </header>
 
-  <!-- SMOKE -->
-  <div class="smoke-layer">
-    <div class="s s1"></div>
-    <div class="s s2"></div>
-    <div class="s s3"></div>
-    <div class="s s4"></div>
-    <div class="s s5"></div>
-    <div class="s s6"></div>
-  </div>
-
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">Elina Tyskling</a>
-    <ul class="nav-links">
-      <li><a href="#music">Music</a></li>
-      <li><a href="#work">Work with me</a></li>
-      <li><a href="#contact">Commission</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <p class="hero-tag">Songwriter &mdash; Stockholm</p>
-      <h1>
-        Elina<br />
-        <em>Tyskling</em>
-      </h1>
-      <p class="hero-sub">Professional songwriter with a lifelong dedication to the written word. Writing across rap, soul &amp; pop.</p>
-      <div class="hero-rule"></div>
-    </div>
-    <div class="hero-image-col">
-      <img src="elinatyskling.png" alt="Elina Tyskling" />
-    </div>
-  </section>
-
-  <!-- MUSIC -->
-  <section class="section-music" id="music">
-    <h2 class="section-heading">Music <span class="music-note">♪</span></h2>
-    <p class="music-byline">All songs written and composed entirely by Elina Tyskling — lyrics and melody, start to finish.</p>
-
-    <div class="tracks">
-
-      <!-- TRACK 1 -->
-      <div class="track">
-        <div class="track-header">
-          <div class="track-info">
-            <div class="track-number">i</div>
-            <div class="track-title">Apricots</div>
-            <div class="track-meta">Country / Bluegrass</div>
-          </div>
-          <button class="play-btn" id="btn-1" onclick="togglePlay(1)" aria-label="Play Apricots">
-            <svg id="icon-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-        </div>
-        <div class="player-controls">
-          <span class="time" id="cur-1">0:00</span>
-          <div class="progress-track" id="prog-track-1" onclick="seek(event, 1)">
-            <div class="progress-fill" id="prog-1"></div>
-          </div>
-          <span class="time" id="dur-1">--:--</span>
-          <div class="volume-area">
-            <span class="vol-icon" onclick="toggleMute(1)">&#9834;</span>
-            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 1)" />
-          </div>
-        </div>
-        <audio id="audio-1" src="songs/apricots.mp3" preload="metadata"></audio>
-      </div>
-
-      <!-- TRACK 2 -->
-      <div class="track">
-        <div class="track-header">
-          <div class="track-info">
-            <div class="track-number">ii</div>
-            <div class="track-title">Hercules</div>
-            <div class="track-meta">Pop</div>
-          </div>
-          <button class="play-btn" id="btn-2" onclick="togglePlay(2)" aria-label="Play Hercules">
-            <svg id="icon-2" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-        </div>
-        <div class="player-controls">
-          <span class="time" id="cur-2">0:00</span>
-          <div class="progress-track" id="prog-track-2" onclick="seek(event, 2)">
-            <div class="progress-fill" id="prog-2"></div>
-          </div>
-          <span class="time" id="dur-2">--:--</span>
-          <div class="volume-area">
-            <span class="vol-icon" onclick="toggleMute(2)">&#9834;</span>
-            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 2)" />
-          </div>
-        </div>
-        <audio id="audio-2" src="songs/hercules.flac" preload="metadata"></audio>
-      </div>
-
-      <!-- TRACK 3 -->
-      <div class="track">
-        <div class="track-header">
-          <div class="track-info">
-            <div class="track-number">iii</div>
-            <div class="track-title">Where the Hell Did He Go</div>
-            <div class="track-meta">Soul</div>
-          </div>
-          <button class="play-btn" id="btn-3" onclick="togglePlay(3)" aria-label="Play Where the Hell Did He Go">
-            <svg id="icon-3" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-        </div>
-        <div class="player-controls">
-          <span class="time" id="cur-3">0:00</span>
-          <div class="progress-track" id="prog-track-3" onclick="seek(event, 3)">
-            <div class="progress-fill" id="prog-3"></div>
-          </div>
-          <span class="time" id="dur-3">--:--</span>
-          <div class="volume-area">
-            <span class="vol-icon" onclick="toggleMute(3)">&#9834;</span>
-            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 3)" />
-          </div>
-        </div>
-        <audio id="audio-3" src="songs/where-the-hell.mp3" preload="metadata"></audio>
-      </div>
-
-      <!-- TRACK 4 -->
-      <div class="track">
-        <div class="track-header">
-          <div class="track-info">
-            <div class="track-number">iv</div>
-            <div class="track-title">Creature of Rhythm</div>
-            <div class="track-meta">Soul</div>
-          </div>
-          <button class="play-btn" id="btn-4" onclick="togglePlay(4)" aria-label="Play Creature of Rhythm">
-            <svg id="icon-4" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-        </div>
-        <div class="player-controls">
-          <span class="time" id="cur-4">0:00</span>
-          <div class="progress-track" id="prog-track-4" onclick="seek(event, 4)">
-            <div class="progress-fill" id="prog-4"></div>
-          </div>
-          <span class="time" id="dur-4">--:--</span>
-          <div class="volume-area">
-            <span class="vol-icon" onclick="toggleMute(4)">&#9834;</span>
-            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 4)" />
-          </div>
-        </div>
-        <audio id="audio-4" src="songs/creature-of-rhythm.wav" preload="metadata"></audio>
-      </div>
-
-      <!-- TRACK 5 -->
-      <div class="track">
-        <div class="track-header">
-          <div class="track-info">
-            <div class="track-number">v</div>
-            <div class="track-title">Read My Mind</div>
-            <div class="track-meta">Pop</div>
-          </div>
-          <button class="play-btn" id="btn-5" onclick="togglePlay(5)" aria-label="Play Read My Mind">
-            <svg id="icon-5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-        </div>
-        <div class="player-controls">
-          <span class="time" id="cur-5">0:00</span>
-          <div class="progress-track" id="prog-track-5" onclick="seek(event, 5)">
-            <div class="progress-fill" id="prog-5"></div>
-          </div>
-          <span class="time" id="dur-5">--:--</span>
-          <div class="volume-area">
-            <span class="vol-icon" onclick="toggleMute(5)">&#9834;</span>
-            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.85" oninput="setVolume(event, 5)" />
-          </div>
-        </div>
-        <audio id="audio-5" src="songs/read-my-mind.mp3" preload="metadata"></audio>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- WORK WITH ME -->
-  <section class="section-work" id="work">
-    <p class="section-label">Work with me</p>
-    <p class="work-text">
-      I bring a <strong>wide creative range</strong> — from rap to soul to pop and beyond. I don't just write lyrics; I <strong>create both words and melody</strong>, delivering a complete song, not just a text on a page. Every piece is <strong>truly unique</strong> — no average dump-pop, no filler. Expect unexpected metaphors, layered meaning and real substance that genuinely stands out. My <strong>high-quality English lyrics</strong> are precise and vivid, with language that cuts through and words that feel inevitable once you hear them. I work <strong>fast and dedicated</strong> — you can expect delivery <strong>within one week</strong>.
-      <br /><br />
-      I also offer <strong>ghostwriting</strong>. The song is yours — your name, your voice, your story. It never has to be known that I wrote it.
-    </p>
-  </section>
-
-  <!-- ORDER FORM -->
-  <section class="section-order" id="contact">
-    <p class="section-label">Commission a Song</p>
-    <div class="order-grid">
+  <main class="frame">
+    <section class="hero" aria-labelledby="name">
       <div>
-        <p class="order-intro">Tell me what you<br /><span>need to say.</span></p>
-        <p class="order-note">Whether it's rap, soul or pop — send me a brief and I'll craft something that fits your vision. Every song is written from scratch, tailored to you.</p>
-
+        <p class="eyebrow">Låtskrivare · Stockholm</p>
+        <h1 id="name">Elina<br><em>Tyskling</em></h1>
+        <p class="hero-copy">Jag skriver låtar där countryns berättande möter soulens värme, gospelns kraft och popens melodier.</p>
+        <a class="hero-link" href="#music">Lyssna på mina låtar</a>
       </div>
-      <form action="https://api.web3forms.com/submit" method="POST" id="order-form">
-        <input type="hidden" name="access_key" value="916e47f0-3ed8-4811-a2bd-a54ea85c1c4f" />
-        <input type="hidden" name="subject" value="New song commission — Elina Tyskling" />
-        <input type="hidden" name="redirect" value="false" />
+      <img class="portrait" src="elinatyskling.png" alt="Porträtt av Elina Tyskling">
+    </section>
 
-        <div class="form-row">
-          <div class="form-field">
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Your name" required />
+    <section class="section" id="music">
+      <h2>Musik</h2>
+      <div>
+        <p>Jag har skrivit både text och melodi till alla låtar här.</p>
+        <ul class="tracks">
+        <li class="track">
+          <div>
+            <h3>Apricots</h3>
+            <p>Country / bluegrass</p>
           </div>
-          <div class="form-field">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="your@email.com" required />
+          <audio controls preload="metadata" src="songs/apricots.mp3" aria-label="Apricots">
+            <a href="songs/apricots.mp3">Öppna Apricots</a>
+          </audio>
+        </li>
+        <li class="track">
+          <div>
+            <h3>Hercules</h3>
+            <p>Pop</p>
           </div>
-        </div>
+          <audio controls preload="metadata" src="songs/hercules.flac" aria-label="Hercules">
+            <a href="songs/hercules.flac">Öppna Hercules</a>
+          </audio>
+        </li>
+        <li class="track">
+          <div>
+            <h3>Where the Hell Did He Go</h3>
+            <p>Soul</p>
+          </div>
+          <audio controls preload="metadata" src="songs/where-the-hell.mp3" aria-label="Where the Hell Did He Go">
+            <a href="songs/where-the-hell.mp3">Öppna Where the Hell Did He Go</a>
+          </audio>
+        </li>
+        <li class="track">
+          <div>
+            <h3>Creature of Rhythm</h3>
+            <p>Soul</p>
+          </div>
+          <audio controls preload="metadata" src="songs/creature-of-rhythm.wav" aria-label="Creature of Rhythm">
+            <a href="songs/creature-of-rhythm.wav">Öppna Creature of Rhythm</a>
+          </audio>
+        </li>
+        <li class="track">
+          <div>
+            <h3>Read My Mind</h3>
+            <p>Pop</p>
+          </div>
+          <audio controls preload="metadata" src="songs/read-my-mind.mp3" aria-label="Read My Mind">
+            <a href="songs/read-my-mind.mp3">Öppna Read My Mind</a>
+          </audio>
+        </li>
+        </ul>
+      </div>
+    </section>
 
-        <div class="form-field">
-          <label>Genre</label>
-          <select name="genre" required>
-            <option value="" disabled selected>Select a genre</option>
-            <option>Rap</option>
-            <option>Soul</option>
-            <option>Pop</option>
-            <option>Other / Mix</option>
-          </select>
-        </div>
+    <section class="section" id="work">
+      <h2>Samarbeta med mig</h2>
+      <div class="copy">
+        <p>Jag skriver både text och melodi med utgångspunkt i din berättelse och din röst. Jag skriver texter på engelska och arbetar inom country, soul, gospel och pop.</p>
+        <p>Jag erbjuder också ghostwriting om du vill ge ut låten i ditt eget namn. Du kan räkna med leverans inom en vecka.</p>
+      </div>
+    </section>
 
-        <div class="form-field">
-          <label>Tell me about your song</label>
-          <textarea name="message" placeholder="Mood, theme, story, artist, language — anything helps." required></textarea>
-        </div>
+    <section class="section" id="contact">
+      <h2>Beställ en låt</h2>
+      <div>
+        <p>Berätta vad du har i åtanke. Jag skriver låten från grunden och tar betalt per låt. Hör av dig så hittar vi ett pris som passar projektet.</p>
+        <form action="https://api.web3forms.com/submit" method="post" id="order-form">
+          <input type="hidden" name="access_key" value="916e47f0-3ed8-4811-a2bd-a54ea85c1c4f" />
+          <input type="hidden" name="subject" value="Ny låtförfrågan till Elina Tyskling">
+          <input type="hidden" name="redirect" value="false">
+          <div class="form-row">
+            <div class="field">
+              <label for="name-field">Namn</label>
+              <input id="name-field" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">E-post</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre" required>
+              <option value="" disabled selected>Välj genre</option>
+              <option>Country</option>
+              <option>Soul</option>
+              <option>Gospel</option>
+              <option>Pop</option>
+              <option>Annat / blandat</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Berätta om låten</label>
+            <textarea id="message" name="message" placeholder="Till exempel känsla, tema eller artist" required></textarea>
+          </div>
+          <button type="submit">Skicka förfrågan</button>
+          <p class="form-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
 
-        <button type="submit" class="submit-btn">Send Request</button>
-        <p class="form-success" id="form-success">Thank you — I'll be in touch soon.</p>
-      </form>
-      <p class="pricing-note">I charge per song and offer <strong>very competitive rates</strong>. Get in touch and we'll find something that works for you.</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="contact">
-    <span class="footer-name">Elina Tyskling</span>
-    <div class="footer-contact">
-      <a href="mailto:elinamariatyskling@gmail.com">elinamariatyskling@gmail.com</a>
-    </div>
+  <footer class="frame">
+    <span class="wordmark">Elina Tyskling</span>
+    <a href="mailto:elinamariatyskling@gmail.com">elinamariatyskling@gmail.com</a>
   </footer>
 
   <script>
-    const pauseIcon = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
-    const playIcon  = `<path d="M8 5v14l11-7z"/>`;
+    const tracks = document.querySelectorAll('audio');
 
-    let currentTrack = null;
+    for (const track of tracks) {
+      track.volume = 0.85;
+      track.addEventListener('play', () => {
+        for (const other of tracks) {
+          if (other !== track) other.pause();
+        }
+      });
+    }
 
-    function togglePlay(id) {
-      const audio = document.getElementById(`audio-${id}`);
-      const btn   = document.getElementById(`btn-${id}`);
-      const icon  = document.getElementById(`icon-${id}`);
+    const form = document.querySelector('#order-form');
+    const submitButton = form.querySelector('button');
+    const statusMessage = form.querySelector('[role="status"]');
 
-      if (currentTrack && currentTrack !== id) {
-        const prev     = document.getElementById(`audio-${currentTrack}`);
-        const prevBtn  = document.getElementById(`btn-${currentTrack}`);
-        const prevIcon = document.getElementById(`icon-${currentTrack}`);
-        prev.pause();
-        prevBtn.classList.remove('playing');
-        prevIcon.innerHTML = playIcon;
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      statusMessage.textContent = '';
+      submitButton.disabled = true;
+      submitButton.textContent = 'Skickar …';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form)
+        });
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error('Web3Forms did not accept the request');
+        }
+
+        form.reset();
+        statusMessage.textContent = 'Tack för din förfrågan! Jag hör av mig snart.';
+      } catch {
+        statusMessage.textContent = 'Förfrågan kunde inte skickas. Försök igen eller mejla mig direkt.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Skicka förfrågan';
       }
-
-      if (audio.paused) {
-        audio.play();
-        btn.classList.add('playing');
-        icon.innerHTML = pauseIcon;
-        currentTrack = id;
-      } else {
-        audio.pause();
-        btn.classList.remove('playing');
-        icon.innerHTML = playIcon;
-        currentTrack = null;
-      }
-    }
-
-    function formatTime(s) {
-      if (isNaN(s)) return '--:--';
-      const m = Math.floor(s / 60);
-      const sec = Math.floor(s % 60);
-      return `${m}:${sec.toString().padStart(2, '0')}`;
-    }
-
-    function initTrack(id) {
-      const audio = document.getElementById(`audio-${id}`);
-
-      audio.addEventListener('loadedmetadata', () => {
-        document.getElementById(`dur-${id}`).textContent = formatTime(audio.duration);
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        if (!audio.duration) return;
-        const pct = (audio.currentTime / audio.duration) * 100;
-        document.getElementById(`prog-${id}`).style.width = pct + '%';
-        document.getElementById(`cur-${id}`).textContent = formatTime(audio.currentTime);
-      });
-
-      audio.addEventListener('ended', () => {
-        document.getElementById(`btn-${id}`).classList.remove('playing');
-        document.getElementById(`icon-${id}`).innerHTML = playIcon;
-        document.getElementById(`prog-${id}`).style.width = '0%';
-        document.getElementById(`cur-${id}`).textContent = '0:00';
-        currentTrack = null;
-      });
-
-      audio.volume = 0.85;
-    }
-
-    function seek(e, id) {
-      const audio = document.getElementById(`audio-${id}`);
-      const track = document.getElementById(`prog-track-${id}`);
-      const rect  = track.getBoundingClientRect();
-      const pct   = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      audio.currentTime = pct * audio.duration;
-    }
-
-    function setVolume(e, id) {
-      document.getElementById(`audio-${id}`).volume = parseFloat(e.target.value);
-    }
-
-    function toggleMute(id) {
-      const audio = document.getElementById(`audio-${id}`);
-      audio.muted = !audio.muted;
-    }
-
-    [1, 2, 3, 4, 5].forEach(initTrack);
-
-    // Order form — submit without page reload
-    document.getElementById('order-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = this.querySelector('.submit-btn');
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: new FormData(this)
-      });
-      if (res.ok) {
-        document.getElementById('form-success').style.display = 'block';
-        this.reset();
-      }
-      btn.textContent = 'Send Request';
-      btn.disabled = false;
     });
   </script>
-
 </body>
 </html>

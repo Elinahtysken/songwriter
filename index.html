@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Elina Tyskling, låtskrivare i Stockholm inom country, soul, gospel och pop.">
-  <title>Elina Tyskling | Låtskrivare</title>
+  <meta name="description" content="Elina Tyskling is a Stockholm-based songwriter working across country, soul, gospel and pop.">
+  <title>Elina Tyskling | Songwriter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -14,7 +14,6 @@
       --ink: #151515;
       --white: #fff;
       --forest: #233d30;
-      --muted: #545454;
       --line: #dededb;
       --serif: "Instrument Serif", Georgia, serif;
       font-family: "DM Sans", system-ui, sans-serif;
@@ -24,8 +23,8 @@
 
     *, *::before, *::after { box-sizing: border-box; }
     body { margin: 0; line-height: 1.6; }
-    h1, h2, h3, p, ul { margin: 0; }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1; }
+    h1, h2, p { margin: 0; }
+    h1, h2 { font-family: var(--serif); font-weight: 400; line-height: 1; }
     p { max-width: 58ch; }
     a { color: var(--forest); text-underline-offset: .22em; }
     :focus-visible { outline: 2px solid var(--forest); outline-offset: 4px; }
@@ -47,10 +46,6 @@
     nav a:hover, .wordmark:hover { text-decoration: underline; }
 
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, .66fr);
-      align-items: center;
-      gap: clamp(2rem, 6vw, 6rem);
       padding-block: clamp(3rem, 8vw, 7rem);
     }
 
@@ -58,8 +53,6 @@
     h1 { font-size: clamp(4.25rem, 11vw, 9rem); line-height: .84; margin-block: 1.1rem 1.6rem; }
     h1 em { font-weight: inherit; }
     .hero-copy { font-size: clamp(1.05rem, 2vw, 1.25rem); max-width: 37ch; }
-    .hero-link { display: inline-block; margin-top: 1.4rem; font-weight: 600; }
-    .portrait { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 42%; filter: grayscale(1); }
 
     .section {
       display: grid;
@@ -70,20 +63,7 @@
     }
 
     h2 { font-size: clamp(2.7rem, 6vw, 4.5rem); }
-    h3 { font-size: 1.8rem; }
     .copy p + p { margin-top: 1rem; }
-    .tracks { list-style: none; padding: 0; margin-top: 1.3rem; }
-    .track {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 16rem);
-      align-items: center;
-      gap: .7rem 1rem;
-      border-top: 1px solid var(--line);
-      padding-block: .85rem;
-    }
-    .track p { color: var(--muted); font-size: .875rem; margin-top: .25rem; }
-    audio { display: block; width: 100%; height: 2.75rem; }
-
     form { display: grid; gap: 1rem; margin-top: 1.4rem; }
     .form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
     .field { display: grid; gap: .3rem; }
@@ -115,132 +95,73 @@
     footer a { overflow-wrap: anywhere; }
 
     @media (max-width: 56rem) {
-      .section, .track { grid-template-columns: 1fr; }
-      audio { max-width: 22rem; }
+      .section { grid-template-columns: 1fr; }
     }
     @media (max-width: 40rem) {
-      .hero, .form-row { grid-template-columns: 1fr; }
-      .portrait { max-width: 26rem; }
-    }
+      .form-row { grid-template-columns: 1fr; }
+      }
   </style>
 </head>
 <body id="top">
   <header class="site-header frame">
     <a class="wordmark" href="#top">Elina Tyskling</a>
-    <nav aria-label="Huvudmeny">
-      <a href="#music">Musik</a>
-      <a href="#work">Samarbete</a>
-      <a href="#contact">Beställ en låt</a>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work with me</a>
+      <a href="#contact">Commission a song</a>
     </nav>
   </header>
 
   <main class="frame">
     <section class="hero" aria-labelledby="name">
       <div>
-        <p class="eyebrow">Låtskrivare · Stockholm</p>
+        <p class="eyebrow">Songwriter · Stockholm</p>
         <h1 id="name">Elina<br><em>Tyskling</em></h1>
-        <p class="hero-copy">Jag skriver låtar där countryns berättande möter soulens värme, gospelns kraft och popens melodier.</p>
-        <a class="hero-link" href="#music">Lyssna på mina låtar</a>
-      </div>
-      <img class="portrait" src="elinatyskling.png" alt="Porträtt av Elina Tyskling">
-    </section>
-
-    <section class="section" id="music">
-      <h2>Musik</h2>
-      <div>
-        <p>Jag har skrivit både text och melodi till alla låtar här.</p>
-        <ul class="tracks">
-        <li class="track">
-          <div>
-            <h3>Apricots</h3>
-            <p>Country / bluegrass</p>
-          </div>
-          <audio controls preload="metadata" src="songs/apricots.mp3" aria-label="Apricots">
-            <a href="songs/apricots.mp3">Öppna Apricots</a>
-          </audio>
-        </li>
-        <li class="track">
-          <div>
-            <h3>Hercules</h3>
-            <p>Pop</p>
-          </div>
-          <audio controls preload="metadata" src="songs/hercules.flac" aria-label="Hercules">
-            <a href="songs/hercules.flac">Öppna Hercules</a>
-          </audio>
-        </li>
-        <li class="track">
-          <div>
-            <h3>Where the Hell Did He Go</h3>
-            <p>Soul</p>
-          </div>
-          <audio controls preload="metadata" src="songs/where-the-hell.mp3" aria-label="Where the Hell Did He Go">
-            <a href="songs/where-the-hell.mp3">Öppna Where the Hell Did He Go</a>
-          </audio>
-        </li>
-        <li class="track">
-          <div>
-            <h3>Creature of Rhythm</h3>
-            <p>Soul</p>
-          </div>
-          <audio controls preload="metadata" src="songs/creature-of-rhythm.wav" aria-label="Creature of Rhythm">
-            <a href="songs/creature-of-rhythm.wav">Öppna Creature of Rhythm</a>
-          </audio>
-        </li>
-        <li class="track">
-          <div>
-            <h3>Read My Mind</h3>
-            <p>Pop</p>
-          </div>
-          <audio controls preload="metadata" src="songs/read-my-mind.mp3" aria-label="Read My Mind">
-            <a href="songs/read-my-mind.mp3">Öppna Read My Mind</a>
-          </audio>
-        </li>
-        </ul>
+        <p class="hero-copy">I write songs that bring together country storytelling, the warmth of soul, the power of gospel and pop melodies.</p>
       </div>
     </section>
 
     <section class="section" id="work">
-      <h2>Samarbeta med mig</h2>
+      <h2>Work with me</h2>
       <div class="copy">
-        <p>Jag skriver både text och melodi med utgångspunkt i din berättelse och din röst. Jag skriver texter på engelska och arbetar inom country, soul, gospel och pop.</p>
-        <p>Jag erbjuder också ghostwriting om du vill ge ut låten i ditt eget namn. Du kan räkna med leverans inom en vecka.</p>
+        <p>I write English lyrics and original melodies shaped by your story and your voice.</p>
+        <p>I also offer ghostwriting if you want to release the song under your own name. You can expect delivery within a week.</p>
       </div>
     </section>
 
     <section class="section" id="contact">
-      <h2>Beställ en låt</h2>
+      <h2>Commission a song</h2>
       <div>
-        <p>Berätta vad du har i åtanke. Jag skriver låten från grunden och tar betalt per låt. Hör av dig så hittar vi ett pris som passar projektet.</p>
+        <p>Tell me what you have in mind. I write each song from scratch and charge per song. Get in touch and we can discuss a price for your project.</p>
         <form action="https://api.web3forms.com/submit" method="post" id="order-form">
           <input type="hidden" name="access_key" value="916e47f0-3ed8-4811-a2bd-a54ea85c1c4f" />
-          <input type="hidden" name="subject" value="Ny låtförfrågan till Elina Tyskling">
+          <input type="hidden" name="subject" value="New song commission for Elina Tyskling">
           <input type="hidden" name="redirect" value="false">
           <div class="form-row">
             <div class="field">
-              <label for="name-field">Namn</label>
+              <label for="name-field">Name</label>
               <input id="name-field" name="name" autocomplete="name" required>
             </div>
             <div class="field">
-              <label for="email">E-post</label>
+              <label for="email">Email</label>
               <input id="email" name="email" type="email" autocomplete="email" required>
             </div>
           </div>
           <div class="field">
             <label for="genre">Genre</label>
             <select id="genre" name="genre" required>
-              <option value="" disabled selected>Välj genre</option>
+              <option value="" disabled selected>Choose a genre</option>
               <option>Country</option>
               <option>Soul</option>
               <option>Gospel</option>
               <option>Pop</option>
-              <option>Annat / blandat</option>
+              <option>Other / mix</option>
             </select>
           </div>
           <div class="field">
-            <label for="message">Berätta om låten</label>
-            <textarea id="message" name="message" placeholder="Till exempel känsla, tema eller artist" required></textarea>
+            <label for="message">Tell me about the song</label>
+            <textarea id="message" name="message" placeholder="For example, the mood, theme or artist" required></textarea>
           </div>
-          <button type="submit">Skicka förfrågan</button>
+          <button type="submit">Send request</button>
           <p class="form-status" role="status"></p>
         </form>
       </div>
@@ -253,17 +174,6 @@
   </footer>
 
   <script>
-    const tracks = document.querySelectorAll('audio');
-
-    for (const track of tracks) {
-      track.volume = 0.85;
-      track.addEventListener('play', () => {
-        for (const other of tracks) {
-          if (other !== track) other.pause();
-        }
-      });
-    }
-
     const form = document.querySelector('#order-form');
     const submitButton = form.querySelector('button');
     const statusMessage = form.querySelector('[role="status"]');
@@ -272,7 +182,7 @@
       event.preventDefault();
       statusMessage.textContent = '';
       submitButton.disabled = true;
-      submitButton.textContent = 'Skickar …';
+      submitButton.textContent = 'Sending…';
 
       try {
         const response = await fetch(form.action, {
@@ -287,12 +197,12 @@
         }
 
         form.reset();
-        statusMessage.textContent = 'Tack för din förfrågan! Jag hör av mig snart.';
+        statusMessage.textContent = 'Thanks for your request. I’ll be in touch soon.';
       } catch {
-        statusMessage.textContent = 'Förfrågan kunde inte skickas. Försök igen eller mejla mig direkt.';
+        statusMessage.textContent = 'Your request could not be sent. Please try again or email me directly.';
       } finally {
         submitButton.disabled = false;
-        submitButton.textContent = 'Skicka förfrågan';
+        submitButton.textContent = 'Send request';
       }
     });
   </script>

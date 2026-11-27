@@ -63,6 +63,8 @@
     }
 
     h2 { font-size: clamp(2.7rem, 6vw, 4.5rem); }
+    .demo-player { display: block; width: 100%; height: 25rem; border: 0; }
+    .demo-link { margin-top: .75rem; }
     .copy p + p { margin-top: 1rem; }
     form { display: grid; gap: 1rem; margin-top: 1.4rem; }
     .form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -99,13 +101,14 @@
     }
     @media (max-width: 40rem) {
       .form-row { grid-template-columns: 1fr; }
-      }
+    }
   </style>
 </head>
 <body id="top">
   <header class="site-header frame">
     <a class="wordmark" href="#top">Elina Tyskling</a>
     <nav aria-label="Main navigation">
+      <a href="#demos">Demos</a>
       <a href="#work">Work with me</a>
       <a href="#contact">Commission a song</a>
     </nav>
@@ -117,6 +120,20 @@
         <p class="eyebrow">Songwriter · Stockholm</p>
         <h1 id="name">Elina<br><em>Tyskling</em></h1>
         <p class="hero-copy">I write songs that bring together country storytelling, the warmth of soul, the power of gospel and pop melodies.</p>
+      </div>
+    </section>
+
+    <section class="section" id="demos" aria-labelledby="demos-heading">
+      <h2 id="demos-heading">Demos</h2>
+      <div>
+        <iframe
+          class="demo-player"
+          title="Elina Tyskling’s demo playlist on SoundCloud"
+          loading="lazy"
+          allow="autoplay; encrypted-media"
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F2324427426&amp;color=%23233d30&amp;auto_play=false&amp;show_artwork=false&amp;show_comments=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false"
+        ></iframe>
+        <p class="demo-link"><a href="https://soundcloud.com/elina-tyskling/sets/elina-tyskling-demo">Open on SoundCloud</a></p>
       </div>
     </section>
 

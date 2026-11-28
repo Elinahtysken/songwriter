@@ -139,3 +139,22 @@ footer a { overflow-wrap: anywhere; }
 }
 
 nav a[aria-current="page"] { text-decoration: underline; }
+
+.songwriting-article {
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.songwriting-article p { max-width: none; }
+.songwriting-article > p + p { margin-top: 1.25rem; }
+.article-byline { color: var(--muted); margin-bottom: 2rem; }
+
+.songwriting-article blockquote {
+  margin: 1.25rem 0 1.5rem;
+  padding: .75rem 1.25rem;
+  border-left: 3px solid #d9a5b2;
+  background: var(--surface);
+  font: italic 1.5rem/1.35 var(--serif);
+}
+
+.songwriting-article blockquote p + p { margin-top: .75rem; }
